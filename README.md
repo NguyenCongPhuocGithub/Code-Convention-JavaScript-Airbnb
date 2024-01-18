@@ -1,20 +1,20 @@
-HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT
-
+**HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT**
+**
 **MỤC LỤC**
 
-I. Thứ tự import của một page hoặc component<br>
+<a id="my-link">I</a> Thứ tự import của một page hoặc component
 
-II. Thứ tự viết style cho css/sass<br>
+II. Thứ tự viết style cho css/sass
 
-III. Thứ tự viết api/ action<br>
+III. Thứ tự viết api/ action
 
-IV. Thứ tự props<br>
+IV. Thứ tự props
 
-V. Thứ tự tạo biến | hàm trong component<br>
+V. Thứ tự tạo biến | hàm trong component
 
-VI. Convention cho react<br>
+VI. Convention cho react
 
-I. Thứ tự import của một page hoặc component
+[I. Thứ tự import của một page hoặc component](#my-link)
 
 1. Import từ node_modules:
 
