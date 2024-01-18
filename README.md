@@ -22,6 +22,16 @@
     [7. Functions](#Functions_link)<br>
     [8. Arrow Functions](#Arrow_Functionss_link)<br>
     [10. Modules](#Modules_link)<br>
+    [11. Iterators and Generators](#Iterators_and_Generators_link)<br>
+    [12. Properties](#Properties_link)<br>
+    [13. Variables](#Variables_link)<br>
+    [15. Comparison Operators & Equality](#Comparison_Operators_&_Equality_link)<br>
+    [16. Blocks](#Blocks_link)<br>
+    [17. Control_Statements](#Control_Statements_link)<br>
+    [18. Comments](#Comments_link)<br>
+    [19. Whitespace](#Whitespace_link)<br>
+    [20. Commas](#Commas_link)<br>
+    [21. Semicolons](#Semicolons_link)<br>
     
 
 ## **NỘI DUNG**
@@ -1054,3 +1064,937 @@ import foo from './foo';
 import bar from './bar';
 import baz from './baz';
 ```
+
+**<span id="Iterators_and_Generators_link">11. Iterators and Generators</span></br>**
+11.1 Không sử dụng các đối tượng duyệt. Ưu tiên sử dụng các hàm bậc cao hơn của JavaScript thay vì các vòng lặp như for-in hay for-of. eslint: `no-iterator ``no-restricted-syntax` </br>
+    Ví dụ: </br>
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// không tốt
+let sum = 0;
+for (let num of numbers) {
+  sum += num;
+}
+sum === 15;
+
+// tốt
+let sum = 0;
+numbers.forEach((num) => {
+  sum += num;
+});
+sum === 15;
+
+// tốt nhất, sử dụng hàm
+const sum = numbers.reduce((total, num) => total + num, 0);
+sum === 15;
+
+// không tốt
+const increasedByOne = [];
+for (let i = 0; i < numbers.length; i++) {
+  increasedByOne.push(numbers[i] + 1);
+}
+
+// tốt
+const increasedByOne = [];
+numbers.forEach((num) => {
+  increasedByOne.push(num + 1);
+});
+
+// tốt nhất, vẫn là sử dụng hàm
+const increasedByOne = numbers.map((num) => num + 1);
+```
+
+11.2 Không sử dụng các hàm sinh trị `function*` vào thời điểm này. </br>
+
+11.3 Nếu bạn bắt buộc phải dùng các hàm sinh trị, hoặc bạn bỏ qua khuyến nghị của chúng tôi, hãy đảm bảo rằng bạn sử dụng dấu cách giữa các bộ phận hàm một cách hợp lý. eslint: `generator-star-spacing` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+function * foo() {
+  // ...
+}
+
+// không tốt
+const bar = function * () {
+  // ...
+};
+
+// không tốt
+const baz = function *() {
+  // ...
+};
+
+// không tốt
+const quux = function*() {
+  // ...
+};
+
+// không tốt
+function*foo() {
+  // ...
+}
+
+// không tốt
+function *foo() {
+  // ...
+}
+
+// rất tệ
+function
+*
+foo() {
+  // ...
+}
+
+// rất rất tệ
+const wat = function
+*
+() {
+  // ...
+};
+
+// tốt
+function* foo() {
+  // ...
+}
+
+// tốt
+const foo = function* () {
+  // ...
+};
+```
+
+**<span id="Properties_link">10. Properties</span></br>**
+12.1 Sử dụng ký pháp chấm `.` để truy cập các thuộc tính. eslint: `dot-notation` </br>
+    Ví dụ: </br>
+
+```javascript
+const luke = {
+  jedi: true,
+  age: 28,
+};
+
+// không tốt
+const isJedi = luke['jedi'];
+
+// tốt
+const isJedi = luke.jedi;
+```
+
+12.2 Sử dụng ký pháp ngoặc `[]` để truy cập thuộc tính với một biến. </br>
+    Ví dụ: </br>
+
+```javascript
+const luke = {
+  jedi: true,
+  age: 28,
+};
+
+function getProp(prop) {
+  return luke[prop];
+}
+
+const isJedi = getProp('jedi');
+```
+
+**<span id="Variables_link">13. Variables</span></br>**
+13.1 Luôn sử dụng `const` hoặc `let` để khai báo biến. Không làm như vậy sẽ dẫn đến các biến toàn cục. Chúng ta muốn tránh việc làm ô nhiễm không gian tên toàn cục. Đội trưởng Hành tinh đã cảnh báo chúng ta. eslint: `no-undef` `prefer-const` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+superPower = new SuperPower();
+
+// tốt
+const superPower = new SuperPower();
+```
+
+13.6 Tránh việc sử dụng các phép tăng và giảm một ngôi (`++`, `--`). eslint `no-plusplus` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+
+const array = [1, 2, 3];
+let num = 1;
+num++;
+--num;
+
+let sum = 0;
+let truthyCount = 0;
+for (let i = 0; i < array.length; i++) {
+  let value = array[i];
+  sum += value;
+  if (value) {
+    truthyCount++;
+  }
+}
+
+// tốt
+
+const array = [1, 2, 3];
+let num = 1;
+num += 1;
+num -= 1;
+
+const sum = array.reduce((a, b) => a + b, 0);
+const truthyCount = array.filter(Boolean).length;
+```
+
+13.7 Tránh các dấu ngắt dòng trước và sau `=` trong một phép gán. Nếu phép gán của bạn vi phạm `max-len`, hãy đặt giá trị trong ngoặc tròn. eslint `operator-linebreak`. </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+const foo =
+  superLongLongLongLongLongLongLongLongFunctionName();
+
+// không tốt
+const foo
+  = 'một chuỗi rất rất rất rất rất rất rất rất rất rất là dài';
+
+// tốt
+const foo = (
+  superLongLongLongLongLongLongLongLongFunctionName()
+);
+
+// tốt
+const foo = 'một chuỗi rất rất rất rất rất rất rất rất rất rất là dài';
+```
+
+**<span id="Comparison_Operators_&_Equality_link">15. Comparison Operators & Equality</span></br>**
+15.1 Sử dụng `===` và `!==` thay vì `==` và `!=`. eslint: `eqeqeq` </br>
+
+15.6 Các toán tử ba ngôi không nên được đặt trong ngoặc và thường được viết trên một dòng riêng. eslint: `no-nested-ternary` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+const foo = maybe1 > maybe2
+  ? "hi hi"
+  : value1 > value2 ? "hi hi" : null;
+
+// chia thành hai biểu thức ba ngôi riêng biệt
+// là tốt nhất
+const maybeNull = value1 > value2 ? 'hi hi' : null;
+const foo = maybe1 > maybe2 ? 'hi hi' : maybeNull;
+```
+
+15.7 Tránh các câu lệnh ba ngôi không đáng có. eslint: `no-unneeded-ternary` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+const foo = a ? a : b;
+const bar = c ? true : false;
+const baz = c ? false : true;
+
+// tốt
+const foo = a || b;
+const bar = !!c;
+const baz = !c;
+```
+
+15.8 Khi kết hợp các toán tử, nhớ đóng chúng trong ngoặc. Ngoại lệ duy nhất là các toán tử tiêu chuẩn: `+`, `-` và `**` vì chúng có thứ tự ưu tiên mà ai ai cũng hiểu. Chúng tôi khuyến khích việc sử dụng đóng ngoặc cho `/` và `*` vì thứ tự ưu tiên của chúng có thể bị nhầm lẫn khi chúng được sử dụng gần nhau. eslint: `no-mixed-operators` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+const foo = a && b < 0 || c > 0 || d + 1 === 0;
+
+// không tốt
+const bar = a ** b - 5 % d;
+
+// không tốt
+// ai đó có thể bị rối và nghĩ nó là (a || b) && c
+if (a || b && c) {
+  return d;
+}
+
+// không tốt
+const bar = a + b / c * d;
+
+// tốt
+const foo = (a && b < 0) || c > 0 || (d + 1 === 0);
+
+// tốt
+const bar = a ** b - (5 % d);
+
+// tốt
+if (a || (b && c)) {
+  return d;
+}
+
+// tốt
+const bar = a + (b / c) * d;
+```
+
+**<span id="Blocks_link">16. Blocks</span></br>**
+16.1 Sử dụng các dấu ngoặc cho các khối nhiều dòng. eslint: `nonblock-statement-body-position` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+if (test)
+  return false;
+
+// tốt
+if (test) return false;
+
+// tốt
+if (test) {
+  return false;
+}
+
+// không tốt
+function foo() { return false; }
+
+// tốt
+function bar() {
+  return false;
+}
+```
+
+16.2 Nếu bạn đang sử dụng các khối nhiều dòng với `if` và `else`, đặt `else` trên cùng dòng với dấu đóng ngoặc của khối `if`. eslint: `brace-style` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+if (test) {
+  thing1();
+  thing2();
+}
+else {
+  thing3();
+}
+
+// tốt
+if (test) {
+  thing1();
+  thing2();
+} else {
+  thing3();
+}
+```
+
+16.3 Nếu một khối `if` luôn thực hiện lệnh `return`, những khối `else` tiếp theo là không cần thiết. Một lệnh return trong một khối `else if` theo sau một khối `if` mà có chứa return có thể được tách thành nhiều khối `if`. eslint: `no-else-return` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+function foo() {
+  if (x) {
+    return x;
+  } else {
+    return y;
+  }
+}
+
+// không tốt
+function cats() {
+  if (x) {
+    return x;
+  } else if (y) {
+    return y;
+  }
+}
+
+// không tốt
+function dogs() {
+  if (x) {
+    return x;
+  } else {
+    if (y) {
+      return y;
+    }
+  }
+}
+
+// tốt
+function foo() {
+  if (x) {
+    return x;
+  }
+
+  return y;
+}
+
+// tốt
+function cats() {
+  if (x) {
+    return x;
+  }
+
+  if (y) {
+    return y;
+  }
+}
+
+// tốt
+function dogs(x) {
+  if (x) {
+    if (z) {
+      return y;
+    }
+  } else {
+    return z;
+  }
+}
+```
+
+**<span id="Control_Statements_link">17. Control Statements</span></br>**
+17.1 Nếu trong trường hợp lệnh điều khiển (`if`, `while`, v.v.) của bạn trở lên quá dài và vượt quá giới hạn độ dài dòng, mỗi (nhóm) điều kiện có thể được đặt ở một dòng mới. Toán tử lô-gíc nên được đặt ở đầu dòng. </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+if ((foo === 123 || bar === 'abc') && doesItLookGoodWhenItBecomesThatLong() && isThisReallyHappening()) {
+  thing1();
+}
+
+// không tốt
+if (foo === 123 &&
+  bar === 'abc') {
+  thing1();
+}
+
+// không tốt
+if (foo === 123
+  && bar === 'abc') {
+  thing1();
+}
+
+// không tốt
+if (
+  foo === 123 &&
+  bar === 'abc'
+) {
+  thing1();
+}
+
+// tốt
+if (
+  foo === 123
+  && bar === 'abc'
+) {
+  thing1();
+}
+
+// tốt
+if (
+  (foo === 123 || bar === 'abc')
+  && doesItLookGoodWhenItBecomesThatLong()
+  && isThisReallyHappening()
+) {
+  thing1();
+}
+
+// tốt
+if (foo === 123 && bar === 'abc') {
+  thing1();
+}
+```
+
+17.2 Không sử dụng toán tử lựa chọn thay cho các câu lệnh điều khiển. </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+!isRunning && startRunning();
+
+// tốt
+if (!isRunning) {
+  startRunning();
+}
+```
+
+**<span id="Comments_link">18. Comments</span></br>**
+18.1 Sử dụng `/** ... */` cho các chú thích nhiều dòng. </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+// make() trả về một phần tử
+// dựa trên tag được truyền vào
+//
+// @param {String} tag
+// @return {Element} element
+function make(tag) {
+
+  // ...
+
+  return element;
+}
+
+// tốt
+/**
+ * make() trả về một phần tử
+ * dựa trên tag được truyền vào
+ */
+function make(tag) {
+
+  // ...
+
+  return element;
+}
+```
+
+18.2 Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it’s on the first line of a block. </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+const active = true;  // là thẻ hiện tại
+
+// tốt
+// là thẻ hiện tại
+const active = true;
+
+// không tốt
+function getType() {
+  console.log('đang lấy loại...');
+  // đặt loại mặc định là 'không phân loại'
+  const type = this.type || 'không phân loại';
+
+  return type;
+}
+
+// tốt
+function getType() {
+  console.log('đang lấy loại...');
+
+  // đặt loại mặc định là 'không phân loại'
+  const type = this.type || 'không phân loại';
+
+  return type;
+}
+
+// như này cũng tốt
+function getType() {
+  // đặt loại mặc định là 'không phân loại'
+  const type = this.type || 'không phân loại';
+
+  return type;
+}
+```
+
+18.3 Bắt đầu tất cả các chú thích bằng một dấu cách để dễ đọc hơn. eslint: `spaced-comment` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+//là thẻ hiện tại
+const active = true;
+
+// tốt
+// là thẻ hiện tại
+const active = true;
+
+// không tốt
+/**
+ *make() trả về một phần tử
+ *dựa trên tag được truyền vào
+ */
+function make(tag) {
+
+  // ...
+
+  return element;
+}
+
+// tốt
+/**
+ * make() trả về một phần tử
+ * dựa trên tag được truyền vào
+ */
+function make(tag) {
+
+  // ...
+
+  return element;
+}
+```
+
+18.4 Thêm `FIXME` hoặc `TODO` vào đầu chú thích giúp các nhà phát triển dễ dàng biết được rằng bạn đang chỉ ra một vấn đề cần được xem lại, hoặc bạn đang đề xuất cách giải quyết cho vấn đề nên mà được áp dụng. Các hành động có thể như `FIXME: -- cần xem xét về thứ này` hoặc `TODO: -- cần áp dụng`. 
+</br>
+
+18.5 Sử dụng `// FIXME`: để chú giải các vấn đề.</br>
+    Ví dụ: </br>
+
+```javascript
+class Calculator extends Abacus {
+  constructor() {
+    super();
+
+    // FIXME: không nên dùng biến toàn cục ở đây
+    total = 0;
+  }
+}
+```
+
+18.6 Sử dụng `// TODO`: để chú giải các cách giải quyết cho các vấn đề. </br>
+    Ví dụ: </br>
+
+```javascript
+class Calculator extends Abacus {
+  constructor() {
+    super();
+
+    // TODO: giá trị của total nên được chuyển thành tham số
+    this.total = 0;
+  }
+}
+```
+
+**<span id="Whitespace_link">19. Whitespace</span></br>**
+19.1 Sử dụng các tab ngắn (dấu cách) đặt về 2 dấu cách. eslint: `indent` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+function foo() {
+∙∙∙∙let name;
+}
+
+// không tốt
+function bar() {
+∙let name;
+}
+
+// tốt
+function baz() {
+∙∙let name;
+}
+```
+
+19.2 Đặt 1 cách trước dấu mở ngoặc. eslint: `space-before-blocks` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+function test(){
+  console.log('ví dụ');
+}
+
+// tốt
+function test() {
+  console.log('ví dụ');
+}
+
+// không tốt
+dog.set('attr',{
+  age: '1 năm',
+  breed: 'Chó núi Bern',
+});
+
+// tốt
+dog.set('attr', {
+  age: '1 năm',
+  breed: 'Chó núi Bern',
+});
+```
+
+19.7 Để một dòng trống sau mỗi khối và trước câu lệnh tiếp theo. </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+if (foo) {
+  return bar;
+}
+return baz;
+
+// tốt
+if (foo) {
+  return bar;
+}
+
+return baz;
+
+// không tốt
+const obj = {
+  foo() {
+  },
+  bar() {
+  },
+};
+return obj;
+
+// tốt
+const obj = {
+  foo() {
+  },
+
+  bar() {
+  },
+};
+
+return obj;
+
+// không tốt
+const arr = [
+  function foo() {
+  },
+  function bar() {
+  },
+];
+return arr;
+
+// tốt
+const arr = [
+  function foo() {
+  },
+
+  function bar() {
+  },
+];
+
+return arr;
+```
+
+19.8 Không kê các khối với các dòng trống. eslint: `padded-blocks` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+function bar() {
+
+  console.log(foo);
+
+}
+
+// không tốt
+if (baz) {
+
+  console.log(qux);
+} else {
+  console.log(foo);
+
+}
+
+// không tốt
+class Foo {
+
+  constructor(bar) {
+    this.bar = bar;
+  }
+}
+
+// tốt
+function bar() {
+  console.log(foo);
+}
+
+// tốt
+if (baz) {
+  console.log(qux);
+} else {
+  console.log(foo);
+}
+```
+
+19.10 Không thêm các dấu cách trong dấu ngoặc tròn. eslint: `space-in-parens` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+function bar( foo ) {
+  return foo;
+}
+
+// tốt
+function bar(foo) {
+  return foo;
+}
+
+// không tốt
+if ( foo ) {
+  console.log(foo);
+}
+
+// tốt
+if (foo) {
+  console.log(foo);
+}
+```
+
+**<span id="Commas_link">20. Commas</span></br>**
+20.1 Các `dấu phẩy` ở đầu: Đừng! eslint: `comma-style` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+const story = [
+    once
+  , upon
+  , aTime
+];
+
+// tốt
+const story = [
+  once,
+  upon,
+  aTime,
+];
+
+// không tốt
+const hero = {
+    firstName: 'Ada'
+  , lastName: 'Lovelace'
+  , birthYear: 1815
+  , superPower: 'máy tính'
+};
+
+// tốt
+const hero = {
+  firstName: 'Ada',
+  lastName: 'Lovelace',
+  birthYear: 1815,
+  superPower: 'máy tính',
+};
+```
+
+20.2 Thêm một `dấu phẩy` ở cuối: Đúng đó! eslint: `comma-dangle` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt - so sánh git khi không có dấu phẩy ở cuối
+const hero = {
+     firstName: 'Florence',
+-    lastName: 'Nightingale'
++    lastName: 'Nightingale',
++    inventorOf: ['coxcomb chart', 'modern nursing']
+};
+
+// tốt - so sánh git khi có các dấu phẩy ở cuối
+const hero = {
+     firstName: 'Florence',
+     lastName: 'Nightingale',
++    inventorOf: ['coxcomb chart', 'modern nursing'],
+};
+```
+
+```javascript
+// không tốt
+const hero = {
+  firstName: 'Dana',
+  lastName: 'Scully'
+};
+
+const heroes = [
+  'Batman',
+  'Superman'
+];
+
+// tốt
+const hero = {
+  firstName: 'Dana',
+  lastName: 'Scully',
+};
+
+const heroes = [
+  'Batman',
+  'Superman',
+];
+
+// không tốt
+function createHero(
+  firstName,
+  lastName,
+  inventorOf
+) {
+  // không làm gì cả
+}
+
+// tốt
+function createHero(
+  firstName,
+  lastName,
+  inventorOf,
+) {
+  // không làm gì cả
+}
+
+// tốt (lưu ý là không được đặt dấu phẩy sau phần từ "còn-lại")
+function createHero(
+  firstName,
+  lastName,
+  inventorOf,
+  ...heroArgs
+) {
+  // không làm gì cả
+}
+
+// không tốt
+createHero(
+  firstName,
+  lastName,
+  inventorOf
+);
+
+// tốt
+createHero(
+  firstName,
+  lastName,
+  inventorOf,
+);
+
+// tốt (lưu ý là không được đặt dấu phẩy sau phần từ "còn-lại")
+createHero(
+  firstName,
+  lastName,
+  inventorOf,
+  ...heroArgs
+);
+```
+
+**<span id="Semicolons_link">21. Semicolons</span></br>**
+21.1 Dĩ nhiên. eslint: `semi` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt - ném ra một ngoại lệ
+const luke = {}
+const leia = {}
+[luke, leia].forEach((jedi) => jedi.father = 'vader')
+
+// không tốt - ngém ra một ngoại lệ
+const reaction = "Không! Không thể nào!"
+(async function meanwhileOnTheFalcon() {
+  // xử lý `leia`, `lando`, `chewie`, `r2`, `c3p0`
+  // ...
+}())
+
+// không tốt - trả về `undefined` thay vì giá trị ở dòng tiếp theo - điều luôn xảy ra khi `return` nằm một mình một dòng, do Quy tắc thêm dấu chấm phẩy tự động!
+function foo() {
+  return
+    'search your feelings, you know it to be foo'
+}
+
+// tốt
+const luke = {};
+const leia = {};
+[luke, leia].forEach((jedi) => {
+  jedi.father = 'vader';
+});
+
+// tốt
+const reaction = "Không! Không thể nào!";
+(async function meanwhileOnTheFalcon() {
+  // xử lý `leia`, `lando`, `chewie`, `r2`, `c3p0`
+  // ...
+}());
+
+// tốt
+function foo() {
+  return 'search your feelings, you know it to be foo';
+}
+```
+
+
+
+
+
