@@ -129,9 +129,9 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 **<span id="VI_link">VII. Sử dụng phong cách build code airbnb</span>**</br>
 
 <span id="Type_link">1. Type</span>
+    1.2 Kiểu phức tạp: Khi bạn truy cập một giá trị kiểu phức tạp, bạn làm việc trên tham chiếu giá trị của nó. - object - array - function </br>
+    Ví dụ:</br>
 
-    1.2 Kiểu phức tạp: Khi bạn truy cập một giá trị kiểu phức tạp, bạn làm việc trên tham chiếu giá trị của nó. - object - array - function</br>
-    Ví dụ:
 ```javascript
     const foo = [1, 2];
     const bar = foo;
@@ -143,6 +143,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 <span id="References_link">2. References:</span>
 
     2.1 Sử dụng `const` đối với tất cả các tham chiếu; tránh sử dụng `var`. eslint: `prefer-const`, `no-const-assign`
+
     Ví dụ:
 
     ```javascript
@@ -154,8 +155,9 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
     const a = 1;
     const b = 2;
     ```
-    
+
     2.2 Nếu bạn bắt buộc phải gán lại các tham chiếu, sử dụng `let`, thay vì `var`. eslint: `no-var`
+
     Ví dụ:
 
     ```javascript
@@ -173,6 +175,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
     ```
     
     2.3 Lưu ý rằng cả `let` và `const` đều thuộc phạm vi khối, còn `var` thuộc phạm vi hàm.
+
     Ví dụ:
 
     ```javascript
@@ -192,6 +195,7 @@ Note: Chỉ sử dụng var cho trường hợp khi const và let không thể �
 <span id="Objects_link">3. Objects</span>
 
     3.1 Sử dụng cú pháp nguyên văn `{}` để khởi tạo đối tượng. eslint: `no-new-object`
+
     Ví dụ:
 
     ```javascript
@@ -203,6 +207,7 @@ Note: Chỉ sử dụng var cho trường hợp khi const và let không thể �
     ```
 
     3.2 Sử dụng các tên được tính của thuộc tính `[key()]` khi tạo các đối tượng có các tên của thuộc tính là động.
+    
     Ví dụ:
 
     ```javascript
