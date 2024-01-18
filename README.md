@@ -86,6 +86,7 @@
     7. Restore
 
 **<a id="IV_link">IV. Thứ tự props</a>**
+
 Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navigate)
 
     - bool
@@ -126,7 +127,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 1.  Type:</br>
     1.2 Kiểu phức tạp: Khi bạn truy cập một giá trị kiểu phức tạp, bạn làm việc trên tham chiếu giá trị của nó. - object - array - function</br>
     Ví dụ:
-```
+```javascript
     const foo = [1, 2];
     const bar = foo;
 
@@ -134,10 +135,11 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 
             console.log(foo[0], bar[0]); // => 9, 9
 ```
-2.  References:</br>
-    2.1 Sử dụng const đối với tất cả các tham chiếu; tránh sử dụng var. eslint: prefer-const, no-const-assign</br>
+2. References:
+    2.1 Sử dụng `const` đối với tất cả các tham chiếu; tránh sử dụng `var`. eslint: `prefer-const`, `no-const-assign`
     Ví dụ:
-```
+
+    ```javascript
     // không tốt
     var a = 1;
     var b = 2;
@@ -145,28 +147,30 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
     // tốt
     const a = 1;
     const b = 2;
-```
-
-    2.2 Nếu bạn bắt buộc phải gán lại các tham chiếu, sử dụng let, thay vì var. eslint: no-var</br/>
-    Ví dụ:
     ```
+    
+    2.2 Nếu bạn bắt buộc phải gán lại các tham chiếu, sử dụng `let`, thay vì `var`. eslint: `no-var`
+    Ví dụ:
+
+    ```javascript
     // không tốt
     var count = 1;
     if (true) {
       count += 1;
     }
 
-    // tốt, sử dụng let.
+    // tốt, sử dụng `let`.
     let count = 1;
     if (true) {
       count += 1;
     }
     ```
-
-    2.3 Lưu ý rằng cả let và const đều thuộc phạm vi khối, còn var thuộc phạm vi hàm.</br>
+    
+    2.3 Lưu ý rằng cả `let` và `const` đều thuộc phạm vi khối, còn `var` thuộc phạm vi hàm.
     Ví dụ:
-```
-    // const và let chỉ tồn tại trong phạm vi khối tạo ra chúng.
+
+    ```javascript
+    // `const` và `let` chỉ tồn tại trong phạm vi khối tạo ra chúng.
     {
       let a = 1;
       const b = 1;
@@ -175,14 +179,14 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
     console.log(a); // ReferenceError
     console.log(b); // ReferenceError
     console.log(c); // In ra 1
-```
+    ```
 
 Note: Chỉ sử dụng var cho trường hợp khi const và let không thể đáp ứng.
 
 3. Objects</br>
 3.1 Sử dụng cú pháp nguyên văn {} để khởi tạo đối tượng. eslint: no-new-object</br>
     Ví dụ:
-```
+```javascript
     // không tốt
     const item = new Object();
 
@@ -191,7 +195,7 @@ Note: Chỉ sử dụng var cho trường hợp khi const và let không thể �
 ```
 3.2 Sử dụng các tên được tính của thuộc tính [key()] khi tạo các đối tượng có các tên của thuộc tính là động.</br>
     Ví dụ:
-```
+```javascript
     function getKey(k) {
       return `tên của thuộc tính là ${k}`;
     }
