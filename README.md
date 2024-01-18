@@ -1,20 +1,20 @@
-**HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT**
-**
+<span style="font-size:18px;">**HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT**</span>
+
 **MỤC LỤC**
 
-<a id="my-link">I</a> Thứ tự import của một page hoặc component
+<a id="I_link">I. Thứ tự import của một page hoặc component</a>
 
-II. Thứ tự viết style cho css/sass
+<a id="II_link">II. Thứ tự viết style cho css/sass</a>
 
-III. Thứ tự viết api/ action
+<a id="III_link">III. Thứ tự viết api/ action</a>
 
-IV. Thứ tự props
+<a id="IV_link">IV. Thứ tự props</a>
 
-V. Thứ tự tạo biến | hàm trong component
+<a id="V_link">V. Thứ tự tạo biến | hàm trong component</a>
 
-VI. Convention cho react
+<a id="V_link">VI. Convention cho react</a>
 
-[I. Thứ tự import của một page hoặc component](#my-link)
+[**I. Thứ tự import của một page hoặc component**](#I_link)
 
 1. Import từ node_modules:
 
@@ -44,7 +44,7 @@ VI. Convention cho react
 
    - css/ sass
 
-II. Thứ tự viết style cho css/sass
+[**II. Thứ tự viết style cho css/sass**](#II_link)
 // block
 
 - display
