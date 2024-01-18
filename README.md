@@ -33,6 +33,7 @@
     [20. Commas](#Commas_link)<br>
     [21. Semicolons](#Semicolons_link)<br>
     [22. Type Casting & Coercion](#TypeCasting_&_Coercion_link)<br>
+    [23. Naming Conventions](#Naming_Conventions_link)<br>
     
 
 ## **NỘI DUNG**
@@ -1995,7 +1996,297 @@ function foo() {
 }
 ```
 
+**<span id="TypeCasting_&_Coercion_link">22. Type Casting & Coercion</span></br>**
+22.1 Thực hiện ép kiểu ở đầu mỗi câu lệnh. </br>
 
+22.2 Đối với các chuỗi: eslint: `no-new-wrappers` </br>
+    Ví dụ: </br>
 
+```javascript
+// => this.reviewScore = 9;
+
+// không tốt
+const totalScore = new String(this.reviewScore); // typeof totalScore là "object", không phải "string"
+
+// không tốt
+const totalScore = this.reviewScore + ''; // cái này gọi this.reviewScore.valueOf()
+
+// không tốt
+const totalScore = this.reviewScore.toString(); // không chắc chắn sẽ thu được một chuỗi
+
+// tốt
+const totalScore = String(this.reviewScore);
+```
+
+22.3 Đối với các số: Sử dụng Number để ép kiểu và parseInt luôn phải được dùng với một cơ số. eslint: `radix` `no-new-wrappers` </br>
+    Ví dụ: </br>
+
+```javascript
+const inputValue = '4';
+
+// không tốt
+const val = new Number(inputValue);
+
+// không tốt
+const val = +inputValue;
+
+// không tốt
+const val = inputValue >> 0;
+
+// không tốt
+const val = parseInt(inputValue);
+
+// tốt
+const val = Number(inputValue);
+
+// tốt
+const val = parseInt(inputValue, 10);
+```
+
+22.6 Đối với các boolean: eslint: `no-new-wrappers` </br>
+    Ví dụ: </br>
+
+```javascript
+const age = 0;
+
+// không tốt
+const hasAge = new Boolean(age);
+
+// tốt
+const hasAge = Boolean(age);
+
+// tốt nhất
+const hasAge = !!age;
+```
+
+**<span id="Naming_Conventions_link">23. Naming Conventions</span></br>**
+23.1 Tránh sử dụng các tên chỉ có một chữ cái. Hãy đặt những cái tên thật ý nghĩa. eslint: `id-length` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+function q() {
+  // ...
+}
+
+// tốt
+function query() {
+  // ...
+}
+```
+
+23.2 Sử dụng `camelCase` khi đặt tên các đối tượng, các hàm và các thực thể. eslint: `camelcase` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+const OBJEcttsssss = {};
+const this_is_my_object = {};
+function c() {}
+
+// tốt
+const thisIsMyObject = {};
+function thisIsMyFunction() {}
+```
+
+23.3 Sử dụng `PascalCase` chỉ khi đặt tên các hàm tạo hay các lớp. eslint: `new-cap` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+function user(options) {
+  this.name = options.name;
+}
+
+const bad = new user({
+  name: 'đừnggg',
+});
+
+// tốt
+class User {
+  constructor(options) {
+    this.name = options.name;
+  }
+}
+
+const good = new User({
+  name: 'đúng nè',
+});
+```
+
+23.4 Không sử dụng các dấu gạch dưới ở đằng trước hoặc đằng sau. eslint: `no-underscore-dangle` </br>
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+this.__firstName__ = 'Panda';
+this.firstName_ = 'Panda';
+this._firstName = 'Panda';
+
+// tốt
+this.firstName = 'Panda';
+
+// tốt, đối với các môi trường hỗ trợ WeakMap
+// xem https://kangax.github.io/compat-table/es6/#test-WeakMap
+const firstNames = new WeakMap();
+firstNames.set(this, 'Panda');
+```
+
+23.5 Đừng lưu các tham chiếu đến `this`. Hãy sử dụng hàm mũi tên hoặc `Function#bind`. </br>
+    Ví dụ: </br
+
+```javascript
+// không tốt
+function foo() {
+  const self = this;
+  return function () {
+    console.log(self);
+  };
+}
+
+// không tốt
+function foo() {
+  const that = this;
+  return function () {
+    console.log(that);
+  };
+}
+
+// tốt
+function foo() {
+  return () => {
+    console.log(this);
+  };
+}
+```
+
+23.6 Phần tên của một tên tệp nên giống với địa chỉ xuất mặc định của tệp đó. </br>
+    Ví dụ: </br>
+
+```javascript
+// file 1 contents
+class CheckBox {
+  // ...
+}
+export default CheckBox;
+
+// file 2 contents
+export default function fortyTwo() { return 42; }
+
+// file 3 contents
+export default function insideDirectory() {}
+
+// in some other file
+// không tốt
+import CheckBox from './checkBox'; // nhập PascalCase, tên camelCase
+import FortyTwo from './FortyTwo'; // nhập/tên PascalCase, xuất camelCase
+import InsideDirectory from './InsideDirectory'; // nhập/tên PascalCase, xuất camelCase
+
+// không tốt
+import CheckBox from './check_box'; // nhập/xuất PascalCase, tên snake_case
+import forty_two from './forty_two'; // nhập/tên snake_case, xuất camelCase
+import inside_directory from './inside_directory'; // nhập snake_case, xuất camelCase
+import index from './inside_directory/index'; // ghi tên tệp index
+import insideDirectory from './insideDirectory/index'; // ghi tên tệp index
+
+// tốt
+import CheckBox from './CheckBox'; // xuất/nhập/tên PascalCase
+import fortyTwo from './fortyTwo'; // xuất/nhập/tên camelCase
+import insideDirectory from './insideDirectory'; // xuất/nhập/tên camelCase; ngầm định "index"
+// ^ hỗ trợ cả insideDirectory.js và insideDirectory/index.js
+```
+
+23.7 Sử dụng `camelCase` khi xuất mặc định một hàm. Tên tệp nên trùng với tên hàm. </br>
+    Ví dụ: </br>
+
+```javascript
+function makeStyleGuide() {
+  // ...
+}
+
+export default makeStyleGuide;
+```
+
+23.8 Sử dụng `PascalCase` khi xuất mặc định một hàm tạo / lớp / đối tượng độc nhật / một thư viện các hàm / đối tượng trần. </br>
+    Ví dụ: </br>
+
+```javascript
+const AirbnbStyleGuide = {
+  es6: {
+  },
+};
+
+export default AirbnbStyleGuide;
+```
+
+23.9 Các từ viết tắt nên được viết hoa hoặc viết thường toàn bộ.
+    Ví dụ: </br>
+
+```javascript
+// không tốt
+import SmsContainer from './containers/SmsContainer';
+
+// không tốt
+const HttpRequests = [
+  // ...
+];
+
+// tốt
+import SMSContainer from './containers/SMSContainer';
+
+// tốt
+const HTTPRequests = [
+  // ...
+];
+
+// như này cũng tốt
+const httpRequests = [
+  // ...
+];
+
+// tốt nhất
+import TextMessageContainer from './containers/TextMessageContainer';
+
+// tốt nhất
+const requests = [
+  // ...
+];
+```
+
+23.10 Bạn có chọn viết hoa một hằng chỉ khi hằng đó (1) được xuất, và (2) một lập trình viên có thể tin tưởng rằng nó (và các thuộc tính của nó) là bất biến.</br>
+
+-Thế còn các `const`? - Điều này là không cần thiết, vì việc viết hoa không nên được sử dụng cho các hằng ở trong cùng một tệp. Nó chỉ nên dùng cho các hằng được xuất.</br>
+-Thế còn một đối tượng được xuất thì sao? - Chỉ viết hoa ở hàng cao nhất của đối tượng xuất (kiểu như: `EXPORTED_OBJECT.key)` và đảm bảo rằng những thuộc tính của nó không thay đổi.</br>
+
+```javascript
+// không tốt
+const PRIVATE_VARIABLE = 'không nên viết hoa bừa bãi các biến trong một tệp';
+
+// không tốt
+export const THING_TO_BE_CHANGED = 'rõ ràng không nên viết hoa';
+
+// không tốt
+export let REASSIGNABLE_VARIABLE = 'đừng có sử dụng let với tên viết hóa';
+
+// ---
+
+// được cho phép, nhưng không không rõ về mặt ngữ nghĩa
+export const apiKey = 'SOMEKEY';
+
+// tốt hơn hầu hết các trường hợp khác
+export const API_KEY = 'SOMEKEY';
+
+// ---
+
+// không tốt - viết hoa không cần thiết chẳng cung cấp gì trị gì về mặt ngữ nghĩa
+export const MAPPING = {
+  KEY: 'giá trị'
+};
+
+// tốt
+export const MAPPING = {
+  key: 'giá trị'
+};
+```
 
 
