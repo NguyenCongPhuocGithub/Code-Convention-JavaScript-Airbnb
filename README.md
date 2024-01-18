@@ -1,12 +1,18 @@
 HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT
 
-MỤC LỤC
-I. Thứ tự import của một page hoặc component
-II. Thứ tự viết style cho css/sass
-III. Thứ tự viết api/ action
-IV. Thứ tự props
-V. Thứ tự tạo biến | hàm trong component
-VI. Convention cho react
+MỤC LỤC<br>
+
+I. Thứ tự import của một page hoặc component<br>
+
+II. Thứ tự viết style cho css/sass<br>
+
+III. Thứ tự viết api/ action<br>
+
+IV. Thứ tự props<br>
+
+V. Thứ tự tạo biến | hàm trong component<br>
+
+VI. Convention cho react<br>
 
 I. Thứ tự import của một page hoặc component
 
