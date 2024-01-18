@@ -140,11 +140,10 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 
             console.log(foo[0], bar[0]); // => 9, 9
 ```
-<span id="References_link">2. References:</span>
 
-    2.1 Sử dụng `const` đối với tất cả các tham chiếu; tránh sử dụng `var`. eslint: `prefer-const`, `no-const-assign`
-
-    Ví dụ:
+<span id="References_link">2. References</span>
+ 2.1 Sử dụng `const` đối với tất cả các tham chiếu; tránh sử dụng `var`. eslint: `prefer-const`, `no-const-assign` </br>
+    Ví dụ:</br>
 
     ```javascript
     // không tốt
@@ -156,9 +155,8 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
     const b = 2;
     ```
 
-    2.2 Nếu bạn bắt buộc phải gán lại các tham chiếu, sử dụng `let`, thay vì `var`. eslint: `no-var`
-
-    Ví dụ:
+2.2 Nếu bạn bắt buộc phải gán lại các tham chiếu, sử dụng `let`, thay vì `var`. eslint: `no-var`</br>
+    Ví dụ:</br>
 
     ```javascript
     // không tốt
@@ -174,9 +172,8 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
     }
     ```
     
-    2.3 Lưu ý rằng cả `let` và `const` đều thuộc phạm vi khối, còn `var` thuộc phạm vi hàm.
-
-    Ví dụ:
+2.3 Lưu ý rằng cả `let` và `const` đều thuộc phạm vi khối, còn `var` thuộc phạm vi hàm.</br>
+    Ví dụ:<br/>
 
     ```javascript
     // `const` và `let` chỉ tồn tại trong phạm vi khối tạo ra chúng.
@@ -193,10 +190,8 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 Note: Chỉ sử dụng var cho trường hợp khi const và let không thể đáp ứng.
 
 <span id="Objects_link">3. Objects</span>
-
-    3.1 Sử dụng cú pháp nguyên văn `{}` để khởi tạo đối tượng. eslint: `no-new-object`
-
-    Ví dụ:
+3.1 Sử dụng cú pháp nguyên văn `{}` để khởi tạo đối tượng. eslint: `no-new-object`</br>
+    Ví dụ:</br>
 
     ```javascript
     // không tốt
@@ -206,9 +201,8 @@ Note: Chỉ sử dụng var cho trường hợp khi const và let không thể �
     const item = {};
     ```
 
-    3.2 Sử dụng các tên được tính của thuộc tính `[key()]` khi tạo các đối tượng có các tên của thuộc tính là động.
-    
-    Ví dụ:
+3.2 Sử dụng các tên được tính của thuộc tính `[key()]` khi tạo các đối tượng có các tên của thuộc tính là động.</br>
+    Ví dụ:</br>
 
     ```javascript
     function getKey(k) {
