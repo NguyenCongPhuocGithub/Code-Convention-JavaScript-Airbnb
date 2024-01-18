@@ -1,4 +1,4 @@
-<span style="font-size:18px;">**HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT**</span>
+**<span style="font-size:20px;">HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT</span>**
 
 **MỤC LỤC**
 
