@@ -1,6 +1,6 @@
 HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT
 
-MỤC LỤC<br>
+**MỤC LỤC**
 
 I. Thứ tự import của một page hoặc component<br>
 
