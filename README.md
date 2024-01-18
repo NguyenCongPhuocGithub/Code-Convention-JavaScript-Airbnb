@@ -148,6 +148,7 @@ VII. Sử dụng phong cách build code airbnb</br>
     2.2 Nếu bạn bắt buộc phải gán lại các tham chiếu, sử dụng let, thay vì var. eslint: no-var</>
     Ví dụ:
 
+    ```
     // không tốt
     var count = 1;
     if (true) {
@@ -159,6 +160,7 @@ VII. Sử dụng phong cách build code airbnb</br>
     if (true) {
       count += 1;
     }
+    ```
 
     2.3 Lưu ý rằng cả let và const đều thuộc phạm vi khối, còn var thuộc phạm vi hàm.</br>
     Ví dụ:
