@@ -45,8 +45,8 @@
    - css/ sass
 
 [**II. Thứ tự viết style cho css/sass**](#II_link)
-// block
 
+// block
 - display
 - width
 - height
@@ -68,19 +68,16 @@
 - right
 
 // text
-
 - color
 - fontFamily
 - fontSize,
 - textDecoration
 
 // effect
-
 - animation
 - tranform
 
 // layout
-
 - z-index
 
 III. Thứ tự viết api/ action
