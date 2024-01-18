@@ -2,9 +2,9 @@
 
 **MỤC LỤC**
 
-<a id="I_link">I. Thứ tự import của một page hoặc component</a>
+[**I. Thứ tự import của một page hoặc component**](#I_link)
 
-<a id="II_link">II. Thứ tự viết style cho css/sass</a>
+[**II. Thứ tự viết style cho css/sass**](#II_link)
 
 <a id="III_link">III. Thứ tự viết api/ action</a>
 
@@ -14,8 +14,8 @@
 
 <a id="V_link">VI. Convention cho react</a>
 
-[**I. Thứ tự import của một page hoặc component**](#I_link)
 
+**<a id="I_link">I. Thứ tự import của một page hoặc component</a>**
 1. Import từ node_modules:
 
    - react
@@ -44,7 +44,7 @@
 
    - css/ sass
 
-[**II. Thứ tự viết style cho css/sass**](#II_link)
+**<a id="II_link">II. Thứ tự viết style cho css/sass</a>**
 
 // block
 - display
@@ -55,16 +55,11 @@
 - margin top => bottom => left => right
 - margin top => bottom => left => right
 
-- // position
-- position
+// position
 - position
 - top
-- top
-- bottom
 - bottom
 - left
-- left
-- right
 - right
 
 // text
