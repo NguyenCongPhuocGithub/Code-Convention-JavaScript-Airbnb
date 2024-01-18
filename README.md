@@ -1,6 +1,6 @@
-**<span style="font-size:20px;">HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT</span>**
+## **HƯỚNG DẪN CODE CONVENTION JAVASCRIPT AIRBNB ESLINT**
 
-**MỤC LỤC**
+# **MỤC LỤC**
 
 [**I. Thứ tự import của một page hoặc component**](#I_link)
 
