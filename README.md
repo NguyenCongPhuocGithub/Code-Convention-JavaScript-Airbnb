@@ -128,8 +128,8 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 
 **<span id="VI_link">VII. Sử dụng phong cách build code airbnb</span>**</br>
 
-<span id="Type_link">1. Type</span>
-    1.2 Kiểu phức tạp: Khi bạn truy cập một giá trị kiểu phức tạp, bạn làm việc trên tham chiếu giá trị của nó. - object - array - function </br>
+<span id="Type_link">1. Type</span></br>
+1.2 Kiểu phức tạp: Khi bạn truy cập một giá trị kiểu phức tạp, bạn làm việc trên tham chiếu giá trị của nó. - object - array - function </br>
     Ví dụ:</br>
 
 ```javascript
@@ -141,7 +141,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
             console.log(foo[0], bar[0]); // => 9, 9
 ```
 
-<span id="References_link">2. References</span>
+<span id="References_link">2. References</span></br>
  2.1 Sử dụng `const` đối với tất cả các tham chiếu; tránh sử dụng `var`. eslint: `prefer-const`, `no-const-assign` </br>
     Ví dụ:</br>
 
@@ -189,7 +189,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 
 Note: Chỉ sử dụng var cho trường hợp khi const và let không thể đáp ứng.
 
-<span id="Objects_link">3. Objects</span>
+<span id="Objects_link">3. Objects</span></br>
 3.1 Sử dụng cú pháp nguyên văn `{}` để khởi tạo đối tượng. eslint: `no-new-object`</br>
     Ví dụ:</br>
 
