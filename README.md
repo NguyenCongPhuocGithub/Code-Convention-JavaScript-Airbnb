@@ -32,6 +32,7 @@
     [19. Whitespace](#Whitespace_link)<br>
     [20. Commas](#Commas_link)<br>
     [21. Semicolons](#Semicolons_link)<br>
+    [22. Type Casting & Coercion](#TypeCasting_&_Coercion_link)<br>
     
 
 ## **NỘI DUNG**
@@ -1542,7 +1543,7 @@ function make(tag) {
 }
 ```
 
-18.2 Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it’s on the first line of a block. </br>
+18.2 Sử dụng `//` cho các chú thích một dòng. Đặt các chú thích một dòng ở một dòng riêng, bên trên chủ đề của chú thích. Để một dòng trống trước chú thích trừ khi chú thích là dòng đầu tiên của một khối. </br>
     Ví dụ: </br>
 
 ```javascript
