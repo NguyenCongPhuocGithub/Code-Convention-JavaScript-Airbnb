@@ -135,7 +135,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 
             console.log(foo[0], bar[0]); // => 9, 9
 ```
-2. References:
+2. References:</br>
     2.1 Sử dụng `const` đối với tất cả các tham chiếu; tránh sử dụng `var`. eslint: `prefer-const`, `no-const-assign`
     Ví dụ:
 
@@ -183,19 +183,22 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 
 Note: Chỉ sử dụng var cho trường hợp khi const và let không thể đáp ứng.
 
-3. Objects</br>
-3.1 Sử dụng cú pháp nguyên văn {} để khởi tạo đối tượng. eslint: no-new-object</br>
+3. Objects
+    3.1 Sử dụng cú pháp nguyên văn `{}` để khởi tạo đối tượng. eslint: `no-new-object`
     Ví dụ:
-```javascript
+
+    ```javascript
     // không tốt
     const item = new Object();
 
     // tốt
     const item = {};
-```
-3.2 Sử dụng các tên được tính của thuộc tính [key()] khi tạo các đối tượng có các tên của thuộc tính là động.</br>
+    ```
+
+    3.2 Sử dụng các tên được tính của thuộc tính `[key()]` khi tạo các đối tượng có các tên của thuộc tính là động.
     Ví dụ:
-```javascript
+
+    ```javascript
     function getKey(k) {
       return `tên của thuộc tính là ${k}`;
     }
@@ -213,4 +216,4 @@ Note: Chỉ sử dụng var cho trường hợp khi const và let không thể �
       name: 'San Francisco',
       [getKey('enabled')]: true,
     };
-```
+    ```
