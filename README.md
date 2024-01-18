@@ -13,9 +13,12 @@
 [**V. Thứ tự viết style cho css/sass**](#V_link)
 
 [**VI. Sử dụng phong cách build code airbnb**](#VI_link)
+    [1. Type](#Type_link)
+    [2. References](#References_link)
+    [3. Objects](#Objects_link)
 
 ## **NỘI DUNG**
-### **<a id="I_link">I. Thứ tự import của một page hoặc component</a>**
+### **<span id="I_link">I. Thứ tự import của một page hoặc component</span>**
 1. Import từ node_modules:
 
    - react
@@ -44,7 +47,7 @@
 
    - css/ sass
 
-**<a id="II_link">II. Thứ tự viết style cho css/sass</a>**
+**<span id="II_link">II. Thứ tự viết style cho css/sass</span>**
 
 // block
 - display
@@ -75,7 +78,7 @@
 // layout
 - z-index
 
-**<a id="III_link">III. Thứ tự viết api/ action</a>**
+**<span id="III_link">III. Thứ tự viết api/ action</span>**
 
     1. Get all
     2. Get list
@@ -85,7 +88,7 @@
     6. Delete
     7. Restore
 
-**<a id="IV_link">IV. Thứ tự props</a>**
+**<span id="IV_link">IV. Thứ tự props</span>**
 
 Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navigate)
 
@@ -96,7 +99,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
     - arr
     - function
 
-**<a id="V_link">V. Thứ tự tạo biến | hàm trong component</a>**
+**<span id="V_link">V. Thứ tự tạo biến | hàm trong component</span>**
 
     1. props
     2. useRef | useHistory | other use... sắp xếp theo thứ tự bảng chữ cái
@@ -113,7 +116,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
     10. default props
         Thứ tự bool - num - string - object - arr - func tương tự 'Thứ tự props'
 
-**<a id="V_link">V. Thứ tự tạo biến | hàm trong component</a>**
+**<span id="V_link">V. Thứ tự tạo biến | hàm trong component</span>**
 
 1. Tên của component:</br>
    - Đặt tên đề cập tới trách nhiệm của component
@@ -123,8 +126,8 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
    - Giữ component nhỏ
    - Mỗi component cho một file
 
-**<a id="VI_link">VII. Sử dụng phong cách build code airbnb</a>**
-1.  Type:</br>
+**<span id="VI_link">VII. Sử dụng phong cách build code airbnb</span>**
+<span id="Type_link">1. Type</span>
     1.2 Kiểu phức tạp: Khi bạn truy cập một giá trị kiểu phức tạp, bạn làm việc trên tham chiếu giá trị của nó. - object - array - function</br>
     Ví dụ:
 ```javascript
@@ -183,7 +186,7 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
 
 Note: Chỉ sử dụng var cho trường hợp khi const và let không thể đáp ứng.
 
-3. Objects
+3. Objects</br>
     3.1 Sử dụng cú pháp nguyên văn `{}` để khởi tạo đối tượng. eslint: `no-new-object`
     Ví dụ:
 
