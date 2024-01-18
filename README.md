@@ -12,7 +12,7 @@
 
 [**V. Thứ tự viết style cho css/sass**](#V_link)
 
-<a id="V_link">VI. Convention cho react</a>
+[**VI. Sử dụng phong cách build code airbnb**](#VI_link)
 
 ## **NỘI DUNG**
 ### **<a id="I_link">I. Thứ tự import của một page hoặc component</a>**
@@ -122,22 +122,22 @@ Thư viện truyền từ APP hoặc index vào component (ví dụ: match, navi
    - Giữ component nhỏ
    - Mỗi component cho một file
 
-VII. Sử dụng phong cách build code airbnb</br>
+**<a id="VI_link">VII. Sử dụng phong cách build code airbnb</a>**
 1.  Type:</br>
     1.2 Kiểu phức tạp: Khi bạn truy cập một giá trị kiểu phức tạp, bạn làm việc trên tham chiếu giá trị của nó. - object - array - function</br>
     Ví dụ:
-
+```
     const foo = [1, 2];
     const bar = foo;
 
             bar[0] = 9;
 
             console.log(foo[0], bar[0]); // => 9, 9
-
+```
 2.  References:</br>
     2.1 Sử dụng const đối với tất cả các tham chiếu; tránh sử dụng var. eslint: prefer-const, no-const-assign</br>
     Ví dụ:
-
+```
     // không tốt
     var a = 1;
     var b = 2;
@@ -145,9 +145,10 @@ VII. Sử dụng phong cách build code airbnb</br>
     // tốt
     const a = 1;
     const b = 2;
-    2.2 Nếu bạn bắt buộc phải gán lại các tham chiếu, sử dụng let, thay vì var. eslint: no-var</>
-    Ví dụ:
+```
 
+    2.2 Nếu bạn bắt buộc phải gán lại các tham chiếu, sử dụng let, thay vì var. eslint: no-var</br/>
+    Ví dụ:
     ```
     // không tốt
     var count = 1;
@@ -164,7 +165,7 @@ VII. Sử dụng phong cách build code airbnb</br>
 
     2.3 Lưu ý rằng cả let và const đều thuộc phạm vi khối, còn var thuộc phạm vi hàm.</br>
     Ví dụ:
-
+```
     // const và let chỉ tồn tại trong phạm vi khối tạo ra chúng.
     {
       let a = 1;
@@ -174,22 +175,23 @@ VII. Sử dụng phong cách build code airbnb</br>
     console.log(a); // ReferenceError
     console.log(b); // ReferenceError
     console.log(c); // In ra 1
+```
 
 Note: Chỉ sử dụng var cho trường hợp khi const và let không thể đáp ứng.
 
 3. Objects</br>
 3.1 Sử dụng cú pháp nguyên văn {} để khởi tạo đối tượng. eslint: no-new-object</br>
     Ví dụ:
-
+```
     // không tốt
     const item = new Object();
 
     // tốt
     const item = {};
-
+```
 3.2 Sử dụng các tên được tính của thuộc tính [key()] khi tạo các đối tượng có các tên của thuộc tính là động.</br>
     Ví dụ:
-
+```
     function getKey(k) {
       return `tên của thuộc tính là ${k}`;
     }
@@ -207,4 +209,4 @@ Note: Chỉ sử dụng var cho trường hợp khi const và let không thể �
       name: 'San Francisco',
       [getKey('enabled')]: true,
     };
-
+```
