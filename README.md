@@ -37,7 +37,7 @@
     
 
 ## **NỘI DUNG**
-### **<span id="I_link">I. Thứ tự import của một page hoặc component</span>**
+**<span id="I_link">I. Thứ tự import của một page hoặc component</span>**
 1. Import từ node_modules:
 
    - react
